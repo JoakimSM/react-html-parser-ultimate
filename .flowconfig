@@ -1,0 +1,10 @@
+[ignore]
+.*/build/.*
+.*/contents/.*
+.*/node_modules/.*
+
+[libs]
+flow/
+
+[options]
+all=false
