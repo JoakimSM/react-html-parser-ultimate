@@ -7,7 +7,7 @@
     "build:clean": "rimraf lib",
     "build:es": "babel src --out-dir lib --ignore '**/__tests__/**'",
     "build:flow": "flow-copy-source -v -i '**/__tests__/**' src lib",
-    "build": "NODE_ENV=production npm run build:clean && npm run build:es && npm run build:flow",
+    "build": "NODE_ENV=production npm run build:clean && npm run build:es",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "release": "npm run build && npm publish"
