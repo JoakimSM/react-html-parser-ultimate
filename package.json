@@ -1,5 +1,5 @@
 {
-  "name": "react16-html-parser",
+  "name": "react-html-parser-ultimate",
   "version": "1.0.0",
   "description": "A utility for converting HTML strings into React components",
   "main": "lib/index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoakimSM/react-transform-tree.git"
+    "url": "git+https://github.com/JoakimSM/react-html-parser-ultimate.git"
   },
   "author": "Joakim Melseth <joakim.melseth@abaris.no>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JoakimSM/react16-html-parser/issues"
+    "url": "https://github.com/JoakimSM/react-html-parser-ultimate/issues"
   },
-  "homepage": "https://github.com/JoakimSM/react16-html-parser#readme",
+  "homepage": "https://github.com/JoakimSM/react-html-parser-ultimate#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
