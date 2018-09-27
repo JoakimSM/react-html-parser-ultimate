@@ -28,7 +28,6 @@ export default function TagElementType(node, index, transform) {
     if (VoidElements.indexOf(tagName) === -1) {
         children = processNodes(node.children, transform);
     }
-
     // create and return the element
-    return React.createElement(tagName, props, children);
+    return React.createElement(tagName, props, ...React.Children.toArray(children));
 }
