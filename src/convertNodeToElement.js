@@ -1,4 +1,4 @@
-import ElementTypes from './elementTypes';
+import getConverter from './convertersForTypes';
 
 /**
  * Converts a htmlparser2 node to a React element
@@ -8,6 +8,6 @@ import ElementTypes from './elementTypes';
  * @param {Function} transform Transform function to apply to children of the node
  * @returns {React.Element}
  */
-export default function convertNodeToElement(node, index, transform) {
-    return ElementTypes[node.type](node, index, transform);
+export default function convertNodeToElement(node, index, onProcessChildren, transform) {
+    return getConverter(node.type)(node, index, onProcessChildren, transform);
 }

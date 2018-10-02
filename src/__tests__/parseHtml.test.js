@@ -39,3 +39,23 @@ test('css style test', () => {
     const reactElements = parseHtml(html);
     expect(reactElements[0].props.children).toBe(cssStyle);
 });
+
+test('onclick button attribute', () => {
+    const html = '<script>function clickerFunction() { document.getElementById("clicker").innerHtml = "CLICKED"; }</script><button id="clicker" onclick="myfunction()">click me</button>';
+    const reactElements = parseHtml(html, { allowScript: true });
+    expect(reactElements.elements[0].props.onclick).toBeDefined();
+});
+
+test('custom transform', () => {
+    const html = '<div><span>test<br/></span></div>';
+    const reactElements = parseHtml(html, {
+        onTransform: (node, index, nodeToElementFn) => {
+            if (node.name === 'div') {
+                node.name = 'span';
+                return nodeToElementFn(node, index);
+            }
+            return undefined;
+        },
+    });
+    expect(reactElements[0].type).toBe('span');
+});

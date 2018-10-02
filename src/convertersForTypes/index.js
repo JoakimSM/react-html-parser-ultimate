@@ -11,7 +11,7 @@ import TagElementType from './TagElementType';
 import StyleElementType from './StyleElementType';
 import UnsupportedElementType from './UnsupportedElementType';
 
-export default {
+const converters = {
     [ElementType.Text]: TextElementType,
     [ElementType.Tag]: TagElementType,
     [ElementType.Style]: StyleElementType,
@@ -21,3 +21,7 @@ export default {
     [ElementType.CDATA]: UnsupportedElementType,
     [ElementType.Doctype]: UnsupportedElementType,
 };
+
+export default function getConverter(elementType) {
+    return converters[elementType];
+}

@@ -12,7 +12,7 @@ import isValidTagOrAttributeName from '../utils/isValidTagOrAttributeName';
  * @param {Function} transform The transform function to apply to all children
  * @returns {React.Element} The React tag element
  */
-export default function TagElementType(node, index, transform) {
+export default function TagElementType(node, index, onProcessChildren, transform) {
     const tagName = node.name;
 
     // validate tag name
@@ -26,7 +26,7 @@ export default function TagElementType(node, index, transform) {
     // If the node is not a void element and has children then process them
     let children = null;
     if (VoidElements.indexOf(tagName) === -1) {
-        children = processNodes(node.children, transform);
+        children = onProcessChildren(node.children, transform);
     }
     // create and return the element
     return React.createElement(tagName, props, ...React.Children.toArray(children));
