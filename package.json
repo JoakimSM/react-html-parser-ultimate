@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production npm run build:clean && npm run build:es",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "release": "npm run build && release-it --dry-run"
+    "release": "npm run build && release-it"
   },
   "repository": {
     "type": "git",
