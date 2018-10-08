@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production npm run build:clean && npm run build:es",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && release-it --dry-run"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "jest": "^23.6.0",
     "react": "^16.5.2",
     "regenerator-runtime": "^0.12.1",
+    "release-it": "^7.6.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
