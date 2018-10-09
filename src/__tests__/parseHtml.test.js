@@ -8,7 +8,26 @@ const executeFn = fn => (data) => {
 };
 const pipe = (...fns) => x => fns.reduce((v, fn) => fn(v), x);
 
-test('basic html test', () => {
+test('html is undefined', () => {
+    const html = undefined;
+    const reactElements = parseHtml(html);
+    expect(reactElements.length).toBe(0);
+});
+
+test('html is undefined with allow script', () => {
+    const html = undefined;
+    const reactElements = parseHtml(html, { allowScript: true });
+    expect(reactElements.elements.length).toBe(0);
+    expect(reactElements.scripts.length).toBe(0);
+});
+
+test('html is empty string', () => {
+    const html = '';
+    const reactElements = parseHtml(html);
+    expect(reactElements.length).toBe(0);
+});
+
+test('basic html', () => {
     const html = '<div><span>test<br/></span></div>';
     const reactElements = parseHtml(html);
 
@@ -26,7 +45,7 @@ test('basic html test', () => {
     expect(html).toBe(htmlFromElements);
 });
 
-test('inline style test', () => {
+test('inline style', () => {
     const html = '<div style="padding-right: 10px;"><span>test<br/></span></div>';
     const reactElements = parseHtml(html);
     const divElementHasStyle = reactElements[0].props.style;
@@ -34,7 +53,7 @@ test('inline style test', () => {
     expect(divElementHasStyle.paddingRight).toBe('10px');
 });
 
-test('css style test', () => {
+test('css style', () => {
     const cssStyle = '.test { background-color: red; }';
     const html = `<style>${cssStyle}</style><div class="test"><span>test<br/></span></div>`;
     const reactElements = parseHtml(html);
