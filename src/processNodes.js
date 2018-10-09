@@ -11,7 +11,7 @@ function processScriptNode(node, foundScripts) {
 
 function processNodesScriptEnabled(nodes, transform) {
     const scripts = [];
-
+    debugger;
     const processNodesInner = innerNodes => innerNodes
         .filter(node => !isEmptyTextNode(node))
         .reduce((accElements, node, index) => {
@@ -27,7 +27,8 @@ function processNodesScriptEnabled(nodes, transform) {
             if (typeof transform === 'function') {
                 transformed = transform(node, index, (alteredNode, alteredIndex, alteredTransform) => convertNodeToElement(alteredNode, alteredIndex, processNodesInner, alteredTransform || transform));
                 if (transformed === null || !!transformed) {
-                    return transformed;
+                    accElements.push(transformed);
+                    return accElements;
                 }
             }
 
