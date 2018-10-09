@@ -1,4 +1,5 @@
 import { parseHtml } from '..';
+import React from 'react';
 
 const getChildren = data => ({ ...data, node: data.node.props.children });
 const executeFn = fn => (data) => {
@@ -46,7 +47,7 @@ test('onclick button attribute', () => {
     expect(reactElements.elements[0].props.onclick).toBeDefined();
 });
 
-test('custom transform', () => {
+test('transform div to span', () => {
     const html = '<div><span>test<br/></span></div>';
     const reactElements = parseHtml(html, {
         onTransform: (node, index, nodeToElementFn) => {
@@ -58,4 +59,25 @@ test('custom transform', () => {
         },
     });
     expect(reactElements[0].type).toBe('span');
+});
+
+test('custom transform', () => {
+    const html = '<div>testText<input/></div>';
+    const reactElements = parseHtml(html, {
+        onTransform: (node) => {
+            if (node.name === 'input') {
+                return React.createElement('InputElement');
+            }
+            return undefined;
+        },
+    });
+
+    const getElementCheckList = pipe(
+        executeFn((data) => { data.checklist.push(data.node.type); }),
+        getChildren,
+        executeFn((data) => { data.checklist.push(data.node[0]); data.checklist.push(data.node[1].type); }),
+    );
+    const listFromElements = getElementCheckList({ node: reactElements[0], checklist: [] }).checklist.map(element => (element === 'InputElement' ? 'input' : element));
+    const htmlFromElements = `<${listFromElements[0]}>${listFromElements[1]}<${listFromElements[2]}/></${listFromElements[0]}>`;
+    expect(htmlFromElements).toBe(html);
 });

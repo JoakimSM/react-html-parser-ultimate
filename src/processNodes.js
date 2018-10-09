@@ -11,7 +11,6 @@ function processScriptNode(node, foundScripts) {
 
 function processNodesScriptEnabled(nodes, transform) {
     const scripts = [];
-    debugger;
     const processNodesInner = innerNodes => innerNodes
         .filter(node => !isEmptyTextNode(node))
         .reduce((accElements, node, index) => {
