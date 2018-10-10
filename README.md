@@ -13,6 +13,7 @@ or
 
 ### Usage
 
+```
 import { parseHtml } from 'react-html-parser-ultimate';
 
 parseHtml(html, {
@@ -25,3 +26,4 @@ parseHtml(html, {
     },
     allowScript: true,
 });
+```
